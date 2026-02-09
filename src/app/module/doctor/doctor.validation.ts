@@ -1,0 +1,18 @@
+import z from "zod";
+import { Gender } from "../../../generated/prisma/enums";
+
+export const updateDoctorValidationSchema = z.object({
+    name: z.string("name is required").min(1, "name must be single character").max(100, "name must be under 100 characters").optional(),
+    email: z.email("invalid email address").optional(),
+    profilePhoto: z.url("Invalid URL format").optional(),
+    contactNumber: z.string("contact number is required").min(11, "contact number must be at least 11 characters").max(14, "contact number must be at most 14 characters").optional(),
+    address: z.string("address is required").min(1, "address must be single character").max(200, "address must be under 200 characters").optional(),
+    registrationNumber: z.string("registration number is required").optional(),
+    experience: z.int("experience is required").nonnegative("experience must be a non-negative integer").optional(),
+    gender: z.enum([Gender.MALE, Gender.FEMALE, Gender.OTHER], "gender must be either MALE, FEMALE, or OTHER").optional(),
+    appointmentFee: z.number("appointment fee is required").nonnegative("appointment fee must be a non-negative number").optional(),
+    qualification: z.string("qualification is required").min(1, "qualification must be single character").max(200, "qualification must be under 200 characters").optional(),
+    currentWorkingPlace: z.string("current working place is required").min(1, "current working place must be single character").max(200, "current working place must be under 200 characters").optional(),
+    designation: z.string("designation is required").min(1, "designation must be single character").max(200, "designation must be under 200 characters").optional(),
+    specialties: z.array(z.uuid("each specialty must be a valid UUID"), "specialties must be an array of UUIDs").min(1, "at least one specialty is required").optional(),
+})
