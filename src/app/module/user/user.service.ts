@@ -1,15 +1,15 @@
 import status from "http-status";
-import { Role, Speciality } from "../../../generated/prisma/client";
+import { Role, Specialty } from "../../../generated/prisma/client";
 import { auth } from "../../lib/auth";
 import { prisma } from "../../lib/prisma";
 import { ICreateAdmin, IcreateDoctorPayload, ICreateSuperAdmin } from "./user.types";
 import AppError from "../../errorHalpers/AppError";
 
 const createDoctor = async (payload: IcreateDoctorPayload) => {
-    const specialties: Speciality[] = []
+    const specialties: Specialty[] = []
 
     for (const specialtyId of payload.specialties) {
-        const specialty = await prisma.speciality.findUnique({
+        const specialty = await prisma.specialty.findUnique({
             where: {
                 id: specialtyId
             }
@@ -58,7 +58,7 @@ const createDoctor = async (payload: IcreateDoctorPayload) => {
                 }
             })
 
-            await tx.doctorSpeciality.createMany({
+            await tx.doctorSpecialty.createMany({
                 data: doctorSpecialtyData
             })
 
@@ -176,8 +176,6 @@ const createAdmin = async (payload: ICreateAdmin) => {
                     email: true,
                     profilePhoto: true,
                     contactNumber: true,
-                    address: true,
-                    gender: true,
                     isDeleted: true,
                     deletedAt: true,
                     createdAt: true,

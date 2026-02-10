@@ -140,14 +140,14 @@ const updateDoctor = async (doctorId: string, payload: IUpdateDoctor) => {
 
 
     if (specialties && specialties.length > 0) {
-        await prisma.doctorSpeciality.deleteMany({
+        await prisma.doctorSpecialty.deleteMany({
             where: {
                 doctorId
             }
         })
 
         const specialitysData = specialties.map(specialtyId => ({ doctorId, specialtyId }))
-        await prisma.doctorSpeciality.createMany({
+        await prisma.doctorSpecialty.createMany({
             data: specialitysData
         })
     }

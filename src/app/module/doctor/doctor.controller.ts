@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { catchAsync } from "../../../shared/catchAsync"
-import { DoctorService } from "./doctor.serice"
+import { DoctorService } from "./doctor.service"
 import { sendResponse } from "../../../shared/sendResponse"
 import status from "http-status"
 import { IUpdateDoctor } from './doctor.type';

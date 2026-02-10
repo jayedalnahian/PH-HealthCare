@@ -48,8 +48,6 @@ const getSingleSuperAdmin = async (adminId: string) => {
             email: true,
             profilePhoto: true,
             contactNumber: true,
-            address: true,
-            gender: true,
             createdAt: true,
             updatedAt: true,
             userId: true,
