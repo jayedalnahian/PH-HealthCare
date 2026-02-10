@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { SpecialityRouter } from "../app/module/speciality/speciality.route";
-import { AuthRouter } from "../app/module/auth/auth.route";
-import { UserRouter } from "../app/module/user/user.route";
-import { DoctorRouter } from "../app/module/doctor/doctor.route";
+import { SpecialityRouter } from "../app/module/speciality/speciality.router";
+import { AuthRouter } from "../app/module/auth/auth.router";
+import { UserRouter } from "../app/module/user/user.router";
+import { DoctorRouter } from "../app/module/doctor/doctor.router";
+import { AdminRoute } from "../app/module/admin/admin.router";
+import { SuperAdminRoute } from "../app/module/superAdmin/superAdmin.route";
 
 const router = Router()
 
@@ -27,6 +29,18 @@ router.use(
 router.use(
     "/doctor",
     DoctorRouter
+)
+
+
+
+router.use(
+    "/admin",
+    AdminRoute
+)
+
+router.use(
+    "/super-admin",
+    SuperAdminRoute
 )
 
 
